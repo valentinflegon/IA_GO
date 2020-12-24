@@ -26,7 +26,7 @@ class myPlayer(PlayerInterface):
         self._mycolor = None
 
     def getPlayerName(self):
-        return "############## Valentin Flegon ##################"
+        return "############## Adil Rami  ##################"
 
     def getPlayerMove(self):
         move = alphaBeta(self,2,True)
@@ -56,7 +56,7 @@ class myPlayer(PlayerInterface):
 
 ################################################
 # function heuristic: 
-# #add the number of stones captured by opponent 
+# add the number of stones captured by opponent 
 # differece in the number of stones o the board
 #
 ################################################
