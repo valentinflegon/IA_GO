@@ -56,12 +56,13 @@ class myPlayer(PlayerInterface):
 
 
 ################################################
-# function heuristic: 
+# fonction heuristic: 
 #   entrée: 
 #   sortie: diff or -diff
 #       
-#       add the number of stones captured by opponent 
-#       differece in the number of stones of the board
+#       Ajoute le nombre de pierres capturé, 
+#       c'est la différence du pierre entre les deux joueurs
+#       sur le plateau de jeu.
 #
 ################################################
 
@@ -137,7 +138,7 @@ def alphaBeta(b, depth, white):
 
 
 ################################################
-# function alphaBeta_rec( ... ): 
+# fonction alphaBeta_rec( ... ): 
 #   entrée: un board, un profondeur, bool un alpha et un beta
 #   sortie: un int qui provient de la fonction heuristic(b)
 #        
