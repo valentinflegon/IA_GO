@@ -85,11 +85,18 @@ def heuristic(self):
 
 
 ################################################
-# function alphaBeta( ... ): 
-#   entrée: 
+# fonction alphaBeta( ... ): 
+#   entrée: board, une profondeur, un bool 
 #   sortie: un move
 #       
-#       function qui ...     
+#       fonction qui donne pour valeur moins l'infini à alpha et plus l'infini à beta.
+#    Ensuite on boucle sur tous les mouvements légaux et on applique ce mouvement à notre plateau, 
+#    ce qui va nous donner un nouveau plateau de jeu.
+#    On appelle récursivement sur AlphaBeta_rec avec le nouveau plateau et une profondeur en moins.
+#    Ensuite en sortant de cet appel récursif on retire le coup joué et on cherche le meilleur coup
+#    à jouer en fonction de l'heuristique retourné par AlphaBeta_rec. 
+#    On peut couper si alpha est supérieur ou égal à beta, ce qui va faire gagner énormement de temps et de coup, 
+#    chose que minimax ne fait pas.
 # 
 ################################################
 
@@ -131,10 +138,13 @@ def alphaBeta(b, depth, white):
 
 ################################################
 # function alphaBeta_rec( ... ): 
-#   entrée: 
-#   sortie: un move
-#       
-#       function qui ...     
+#   entrée: un board, un profondeur, bool un alpha et un beta
+#   sortie: un int qui provient de la fonction heuristic(b)
+#        
+#       Cette fonction est très similaire à AlphaBeta, mais elle vérifie si la profondeur
+#    n'est pas égale à zéro ou si la partie n'est pas fini, dans ce cas on retourne un  appel la fonction
+#    heuristique sur  le plateau tel qu'il est à ce moment-là. 
+#    Ce qui va nous faire remonter dans nos appels récursifs.   
 # 
 ################################################
 
