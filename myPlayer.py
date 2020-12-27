@@ -26,7 +26,7 @@ class myPlayer(PlayerInterface):
         self._mycolor = None
 
     def getPlayerName(self):
-        return "############## Adil Rami  ##################"
+        return "#####_Adémo_#####"
 
     def getPlayerMove(self):
         move = alphaBeta(self,2,True)
@@ -54,10 +54,14 @@ class myPlayer(PlayerInterface):
         else:
             print("I lost :(!!")
 
+
 ################################################
 # function heuristic: 
-# add the number of stones captured by opponent 
-# differece in the number of stones o the board
+#   entrée: 
+#   sortie: diff or -diff
+#       
+#       add the number of stones captured by opponent 
+#       differece in the number of stones of the board
 #
 ################################################
 
@@ -69,7 +73,6 @@ def heuristic(self):
             corr = [ r, c]
             x = self._board.flatten(corr)
             color = self._board.__getitem__(x)
-            #empty si 0
             if color == 1: #black
                 black_stones += 1 
             elif color == 2: #white
@@ -83,7 +86,11 @@ def heuristic(self):
 
 ################################################
 # function alphaBeta( ... ): 
-#  
+#   entrée: 
+#   sortie: un move
+#       
+#       function qui ...     
+# 
 ################################################
 
 def alphaBeta(b, depth, white):
@@ -121,10 +128,16 @@ def alphaBeta(b, depth, white):
 
 
 
+
 ################################################
-# function alphaBeta( ... ): 
-#  
+# function alphaBeta_rec( ... ): 
+#   entrée: 
+#   sortie: un move
+#       
+#       function qui ...     
+# 
 ################################################
+
 
 def alphaBeta_rec(b, depth, white, alpha, beta):
     
@@ -137,7 +150,7 @@ def alphaBeta_rec(b, depth, white, alpha, beta):
             return 'PASS'
         b._board.push(i)
         eval = alphaBeta_rec(b, depth - 1, not white, alpha, beta)
-        eval -= 0.00000001 * (100 - depth)  # valeur un peu magique pour faire varier le poids des
+        eval -= 0.00000001 * (100 - depth) 
         b._board.pop()
         if to_ret is None:
             to_ret = eval

@@ -1,78 +1,65 @@
-Goban.py 
----------
+###############################################
+#        Projet IA JEUX DE GO 2020            #
+#                                             #
+#          Duplantier Louis, Gr2              #
+#          Flegon Valentin, Gr5               #
+###############################################
 
-Fichier contenant les règles du jeu de GO avec les fonctions et méthodes pour parcourir (relativement) efficacement
-l'arbre de jeu, à l'aide de legal_moves() et push()/pop() comme vu en cours.
+##################################################################################################################
 
-Ce fichier sera utilisé comme arbitre dans le tournoi. Vous avez maintenant les fonctions de score implantés dedans.
-Sauf problème, ce sera la methode result() qui donnera la vainqueur quand is_game_over() sera Vrai.
+    Bonjour voici notre projet d'Intelligence Artificielle,
+portant sur le jeu de Go. Dans ce projet il a fallu implémenter un 
+joueur de Go capable de rivaliser avec les autres IA de la promotion M1 informatique.
+Nous espérons que notre IA puisse arriver à bien se classer lors du tournoi.
 
-Vous avez un décompte plus précis de la victoire dans final_go_score()
+Nous avons alors principalement du coder une heuristique ainsi qu'un
+algorithme capable de trouver le meilleur coup à jouer afin de remporter 
+la partie. Nous avons essayé Iterative Deepening ou d'autre algorithme comme Monte-Carlo,
+qui même s'il aurait pu nous permettre de mieux jouer cela était plus complexe à mettre en place,
+sans forcément apporter un gros changement sur la façon de jouer.
 
-Pour vous aider à parcourir le plateau de jeu, si b est un Board(), vous pouvez avoir accès à la couleur de la pierre
-posée en (x,y) en utilisant b[Board.flatten((x,y))]
-
-
-GnuGo.py
---------
-
-Fichier contenant un ensemble de fonctions pour communiquer avec gnugo
-
-
-starter-go.py
--------------
-
-Exemples de deux développements aléatoires (utilisant legal_moves et push/pop). Le premier utilise legal_moves et le
-second weak_legal_moves, qui ne garanti plus que le coup aléatoire soit vraiment légal (à cause des Ko).
-
-La première chose à faire est probablement de 
-
-
-localGame.py
-------------
-
-Permet de lancer un match de myPlayer contre lui même, en vérifiant les coups avec une instanciation de Goban.py comme
-arbitre. Vous ne devez pas modifier ce fichier pour qu'il fonctionne, sans quoi je risque d'avoir des problèmes pour
-faire entrer votre IA dans le tournoi.
+# Heuristique
+        Nous avons choisi de coder une heuristique plutôt simple mais relativement efficace,
+    nous nous sommes inspiré du livre "Deep Learning and the Game of Go" de Max Pumperla et Kevin Ferguson.
+    Cette heuristique calcule la différence entre le nombre de pierre noire et blanche sur le plateau de jeu,
+    Ce qui nous donne le nombre de pierre capturé. Ainsi ça retourne la différence ou -1*différence,
+    selon qui l'appel.
+    Nous avions également d'autres idées d'heuristique plus complexe ->
 
 
-playerInterface.py
-------------------
+# AlphaBeta
+        Pour notre algorithme nous sommes partie sur AlphaBeta qui relativement
+    simple et fonctionne bien. Nous avons commencé par faire minimax, il moins efficace que 
+    AlphaBeta mais les deux algorithmes utilisent une base commune.
+    On procède de la façon suivante, on donne pour valeur moins l'infini à alpha et plus l'infini à beta.
+    Ensuite on boucle sur tous les mouvements légaux et on applique ce mouvement à notre plateau, 
+    ce qui va nous donner un nouveau plateau de jeu.
+    On appelle récursivement sur AlphaBeta_rec avec le nouveau plateau et une profondeur en moins.
+    Ensuite en sortant de cet appel récursif on retire le coup joué et on cherche le meilleur coup
+    à jouer en fonction de l'heuristique retourné par AlphaBeta_rec. 
+    On peut couper si alpha est supérieur ou égal à beta, ce qui va faire gagner énormement de temps et de coup, 
+    chose que minimax ne fait pas.
 
-Classe abstraite, décrite dans le sujet, permettant à votre joueur d'implanter correctement les fonctions pour être
-utilisé dans localGame et donc, dans le tournoi. Attention, il faut bien faire attention aux coups internes dans Goban
-(appelés "flat") et qui sont utilisés dans legal_moves/weak_legal_moves et push/pop des coups externes qui sont
-utilisés dans l'interface (les named moves). En interne, un coup est un indice dans un tableau 1 dimension
--1, 0.._BOARDSIZE^2 et en externe (dans cette interface) les coups sont des chaines de caractères dans "A1", ..., "J9",
-"PASS". Il ne faut pas se mélanger les pinceaux.
-
-
-myPlayer.py
------------
-
-Fichier que vous devrez modifier pour y mettre votre IA pour le tournoi. En l'état actuel, il contient la copie du
-joueur randomPlayer.py
-
-
-randomPlayer.py
----------------
-
-Un joueur aléatoire que vous pourrez conserver tel quel
+# AlphaBeta_rec
+        Cette fonction est très similaire à AlphaBeta, mais elle vérifie si la profondeur
+    n'est pas égale à zéro ou si la partie n'est pas fini, dans ce cas on retourne un  appel la fonction
+    heuristique sur  le plateau tel qu'il est à ce moment-là. 
+    Ce qui va nous faire remonter dans nos appels récursifs.
 
 
-gnugoPlayer.py
---------------
-
-Un joueur basé sur gnugo. Vous permet de vous mesurer à lui simplement.
-
-
-namedGame.py
-------------
-
-Permet de lancer deux joueurs différents l'un contre l'autre.
-Il attent en argument les deux modules des deux joueurs à importer.
+# Add 
+        De plus il est possible d'améliorer notre heuristique en utilisant du deeplearning,
+    afin de nous retourner une prédiction du plateau la plus juste possible.
 
 
+
+Merci d'avoir pris le temps d'évaluer notre projet et espérant qu'il soit à la hauteur de vos espérances.
+De joyeuse fête et une bonne année 2021.
+Cordialement Louis et Valentin.
+
+##################################################################################################################
+
+================================
 EXEMPLES DE LIGNES DE COMMANDES:
 ================================
 
