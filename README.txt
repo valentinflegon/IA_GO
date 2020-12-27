@@ -24,7 +24,7 @@ sans forcément apporter un gros changement sur la façon de jouer.
     Cette heuristique calcule la différence entre le nombre de pierre noire et blanche sur le plateau de jeu,
     Ce qui nous donne le nombre de pierre capturé. Ainsi ça retourne la différence ou -1*différence,
     selon qui l'appel.
-    Nous avions également d'autres idées d'heuristique plus complexe ->
+    Nous avions également d'autres idées d'heuristique plus complexe voir dans myPlayer.py
 
 
 # AlphaBeta
